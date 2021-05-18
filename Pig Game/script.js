@@ -29,6 +29,11 @@ newGameBtn.onclick = () => {
   diceImage.src = '';
   rollDiceBtn.onclick = rollDice;
   holdBtn.onclick = updateTotalScore;
+  // Set Player0 as Starting player
+  activePlayer[0] = true;
+  activePlayer[1] = false;
+  player0.classList.add('player--active');
+  player1.classList.remove('player--active');
 };
 
 function rollDice() {
