@@ -32,6 +32,11 @@ newGameBtn.onclick = () => {
   diceImage.src = '';
   rollDiceBtn.onclick = rollDice;
   holdBtn.onclick = updateTotalScore;
+
+  // if not present, remove does nothing
+  player0.classList.remove('player--winner');
+  player1.classList.remove('player--winner');
+
   // Set Player0 as Starting player
   // activePlayer[0] = true;
   // activePlayer[1] = false;
@@ -102,10 +107,12 @@ function updateTotalScore() {
       Number(player1CurrentScore.textContent);
   }
   if (isGameCompleted()) {
-    const playerName = activePlayer === 0 ? 'Player 1' : 'Player 2';
-    alert(`${playerName} has won!!`);
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.add('player--winner');
     rollDiceBtn.removeEventListener('click', rollDice);
     holdBtn.removeEventListener('click', updateTotalScore);
+    diceImage.src = '';
   } else {
     resetCurrentScore();
     switchActivePlayerToInactive();
@@ -117,5 +124,5 @@ function isGameCompleted() {
     activePlayer === 0
       ? Number(player0TotalScore.textContent)
       : Number(player1TotalScore.textContent);
-  return totalScore >= 100 ? true : false;
+  return totalScore >= 20 ? true : false;
 }
