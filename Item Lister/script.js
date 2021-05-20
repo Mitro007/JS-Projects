@@ -1,10 +1,16 @@
 'use strict';
 
 const items = document.querySelector('.list-group');
-const btnSubmit = document.querySelector('.btn-dark');
+const form = document.getElementById('addForm');
 const textField = document.querySelector('.mr-2');
 
-btnSubmit.addEventListener('click', (ev) => {
+form.addEventListener('submit', addItem);
+
+for (let index = 0; index < items.children.length; index++) {
+  items.children[index].children[0].addEventListener('click', removeItem);
+}
+
+function addItem(ev) {
   // If we want to disable the default behavior of the submit (which causes the page to refresh) we need to use the
   // preventDefault() method of the Event object.
   ev.preventDefault();
@@ -25,10 +31,6 @@ btnSubmit.addEventListener('click', (ev) => {
   liElement.appendChild(btn);
   items.appendChild(liElement);
   textField.value = '';
-});
-
-for (let index = 0; index < items.children.length; index++) {
-  items.children[index].children[0].addEventListener('click', removeItem);
 }
 
 function removeItem(ev) {
