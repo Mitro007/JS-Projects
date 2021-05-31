@@ -5,7 +5,12 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const headerElement = document.querySelector('.header');
+const btnLearnMore = document.querySelector('.btn--scroll-to');
+const featuresSection = document.getElementById('section--1');
+const operationsSection = document.getElementById('section--2');
+const testimonialsSection = document.getElementById('section--3');
 
+// Modal Window
 const closeModal = function () {
   modalElement.classList.add('hidden');
   overlay.classList.add('hidden');
@@ -28,6 +33,56 @@ document.addEventListener('keydown', (ev) => {
   if (ev.key === 'Escape' && !modalElement.classList.contains('hidden')) {
     closeModal();
   }
+});
+
+// Smooth Scrolling
+btnLearnMore.addEventListener('click', function () {
+  featuresSection.scrollIntoView({ behavior: 'smooth' });
+});
+
+// Implementing Page Navigation with Smooth Scrolling
+document.querySelector('.nav__links').addEventListener('click', function (ev) {
+  // to prevent <a> from changing the url and reload
+  ev.preventDefault();
+
+  // Approach 1
+  /*
+  const url = ev.target.href;
+  // console.log(url.substring(url.indexOf('#') + 1));
+  switch (url.substring(url.indexOf('#') + 1)) {
+    case 'section--1':
+      featuresSection.scrollIntoView({ behavior: 'smooth' });
+      break;
+    case 'section--2':
+      operationsSection.scrollIntoView({ behavior: 'smooth' });
+      break;
+    case 'section--3':
+      testimonialsSection.scrollIntoView({ behavior: 'smooth' });
+      break;
+    default:
+      break;
+  }
+  */
+
+  // Approach 2
+  const id = ev.target.getAttribute('href');
+  document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+
+  // Approach 3
+  // console.log(ev.target.getAttribute('href'));
+  /*switch (ev.target.getAttribute('href')) {
+    case '#section--1':
+      featuresSection.scrollIntoView({ behavior: 'smooth' });
+      break;
+    case '#section--2':
+      operationsSection.scrollIntoView({ behavior: 'smooth' });
+      break;
+    case '#section--3':
+      testimonialsSection.scrollIntoView({ behavior: 'smooth' });
+      break;
+    default:
+      break;
+  } */
 });
 
 //////////////////////////////////////////////////////////
@@ -90,6 +145,7 @@ document.addEventListener('keydown', (ev) => {
 
 ////////////////////////////////////////////////////////////
 // Smooth Scrolling
+/*
 const btnLearnMore = document.querySelector('.btn--scroll-to');
 const featuresSection = document.getElementById('section--1');
 
@@ -132,3 +188,57 @@ const featuresSection = document.getElementById('section--1');
 btnLearnMore.addEventListener('click', function () {
   featuresSection.scrollIntoView({ behavior: 'smooth' });
 });
+*/
+
+////////////////////////////////////////////////////////////////////////////////////
+// Nice way to remove event handler if we need the event listener only once
+
+// const h1 = document.querySelector('h1');
+// const alertH1 = function () {
+//   alert('addEventListener: Great! you are reading the heading :D');
+//   h1.removeEventListener('mouseenter', alertH1);
+// };
+// h1.addEventListener('mouseenter', alertH1);
+
+/////////////////////////////////////////////////////////////
+// Event Propagation In Practice
+// rgb(255, 255, 255);
+/*
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+
+// console.log(randomColor());
+
+document.querySelector('.nav__link').addEventListener('click', function (ev) {
+  // console.log(ev.target, ev.currentTarget);
+  // console.log(this);
+  const color = randomColor();
+  // console.log(color);
+  ev.target.style.backgroundColor = color;
+
+  // stop propagation - not recommended
+  // ev.stopPropagation();
+});
+
+document.querySelector('.nav__links').addEventListener('click', function (ev) {
+  // console.log(ev.target, ev.currentTarget);
+  console.log('Conatiner :: ', this === ev.currentTarget);
+  const color = randomColor();
+  // console.log(color);
+  this.style.backgroundColor = color;
+});
+
+document.querySelector('.nav').addEventListener('click', function (ev) {
+  // console.log(ev.target, ev.currentTarget);
+  console.log('NAV :: ', this === ev.currentTarget);
+  const color = randomColor();
+  // console.log(color);
+  this.style.backgroundColor = color;
+});
+*/
+
+////////////////////////////////////////////////////////////
+// DOM Traversing
