@@ -64,9 +64,11 @@ document.querySelector('.nav__links').addEventListener('click', function (ev) {
   }
   */
 
-  // Approach 2
-  const id = ev.target.getAttribute('href');
-  document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  // Approach 2 -- click on nav bar results in error
+  if (ev.target.classList.contains('nav__link')) {
+    const id = ev.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
 
   // Approach 3
   // console.log(ev.target.getAttribute('href'));
