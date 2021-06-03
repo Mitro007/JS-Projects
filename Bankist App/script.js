@@ -117,28 +117,24 @@ tabsContainer.addEventListener('click', function (ev) {
 // Menu fade animation
 const navContainer = document.querySelector('.nav');
 
-const handleOver = function (ev, opacity) {
+const handleOver = function (ev) {
   if (ev.target.classList.contains('nav__link')) {
     const link = ev.target;
     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
     const logo = link.closest('.nav').querySelector('img');
     siblings.forEach((el) => {
       if (el !== link) {
-        el.style.opacity = opacity;
+        el.style.opacity = this;
       }
     });
-    logo.style.opacity = opacity;
+    logo.style.opacity = this;
   }
 };
 // mouseenter event doesn't bubble
-navContainer.addEventListener('mouseover', function (ev) {
-  handleOver(ev, 0.5);
-});
+navContainer.addEventListener('mouseover', handleOver.bind(0.5));
 
 // we undo what we do with mouseover
-navContainer.addEventListener('mouseout', function (ev) {
-  handleOver(ev, 1);
-});
+navContainer.addEventListener('mouseout', handleOver.bind(1));
 
 //////////////////////////////////////////////////////////
 //  Creating element
