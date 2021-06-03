@@ -102,19 +102,15 @@ tabsContainer.addEventListener('click', function (ev) {
     const tabContent = document.querySelector(
       `.${classNameforDescription}${tabId}`
     );
-    tabEl.classList.add(classNameForActiveTabEffect);
-    tabContent.classList.add(classNameForActiveContentEffect);
     tabs.forEach((el) => {
-      if (el !== tabEl) {
-        el.classList.remove(classNameForActiveTabEffect);
-      }
+      el.classList.remove(classNameForActiveTabEffect);
     });
 
     tabsContent.forEach((el) => {
-      if (el !== tabContent) {
-        el.classList.remove(classNameForActiveContentEffect);
-      }
+      el.classList.remove(classNameForActiveContentEffect);
     });
+    tabEl.classList.add(classNameForActiveTabEffect);
+    tabContent.classList.add(classNameForActiveContentEffect);
   }
 });
 
