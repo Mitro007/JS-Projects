@@ -134,7 +134,22 @@ const handleOver = function (ev) {
 navContainer.addEventListener('mouseover', handleOver.bind(0.5));
 
 // we undo what we do with mouseover
+// we can pass only one parameter to event handlers using 'this'
 navContainer.addEventListener('mouseout', handleOver.bind(1));
+
+//Implementing a Sticky Navigation : the Scroll Event
+
+// approach 1 - not recommended
+const initialCoords = featuresSection.getBoundingClientRect();
+window.addEventListener('scroll', function () {
+  if (window.scrollY > initialCoords.top) {
+    navContainer.classList.add('sticky');
+  } else {
+    navContainer.classList.remove('sticky');
+  }
+});
+
+// Approach 2 - the intersection Observer API
 
 //////////////////////////////////////////////////////////
 //  Creating element
