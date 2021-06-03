@@ -87,6 +87,35 @@ document.querySelector('.nav__links').addEventListener('click', function (ev) {
   } */
 });
 
+// Creating tabbed components
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContent = document.querySelectorAll('.operations__content');
+const tabsContainer = document.querySelector('.operations__tab-container');
+
+tabsContainer.addEventListener('click', function (ev) {
+  const tabEl = ev.target.closest('.operations__tab');
+  if (tabEl) {
+    const tabId = tabEl.dataset.tab;
+    const classNameforDescription = 'operations__content--' + tabId;
+    const classNameForActiveContentEffect = 'operations__content--active';
+    const classNameForActiveTabEffect = 'operations__tab--active';
+    const tabContent = document.querySelector(`.${classNameforDescription}`);
+    tabEl.classList.add(classNameForActiveTabEffect);
+    tabContent.classList.add(classNameForActiveContentEffect);
+    tabs.forEach((el) => {
+      if (el !== tabEl) {
+        el.classList.remove(classNameForActiveTabEffect);
+      }
+    });
+
+    tabsContent.forEach((el) => {
+      if (el !== tabContent) {
+        el.classList.remove(classNameForActiveContentEffect);
+      }
+    });
+  }
+});
+
 //////////////////////////////////////////////////////////
 //  Creating element
 // const message = document.createElement('div');
@@ -244,3 +273,25 @@ document.querySelector('.nav').addEventListener('click', function (ev) {
 
 ////////////////////////////////////////////////////////////
 // DOM Traversing
+// const h1 = document.querySelector('h1');
+
+// going downwards
+// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.firstChild);
+// console.log(h1.firstElementChild);
+// console.log(h1.children);
+// console.log(h1.childNodes);
+// console.log(h1.innerHTML);
+// console.log(h1.innerText);
+// h1.firstElementChild.style.color = 'white';
+// h1.lastElementChild.style.color = 'orangered';
+
+// going upwards
+// console.log(h1.parentElement);
+// we can think of closest as opposite of querySelector.
+// querySeletor searches down the node, whereas closest searches upward from the node
+// h1.closest('.header').style.background = 'var(--gradient-secondary)';
+
+// Going Sideways : siblings
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
