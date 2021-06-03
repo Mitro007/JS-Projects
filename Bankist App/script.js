@@ -114,6 +114,32 @@ tabsContainer.addEventListener('click', function (ev) {
   }
 });
 
+// Menu fade animation
+const navContainer = document.querySelector('.nav');
+
+const handleOver = function (ev, opacity) {
+  if (ev.target.classList.contains('nav__link')) {
+    const link = ev.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+    siblings.forEach((el) => {
+      if (el !== link) {
+        el.style.opacity = opacity;
+      }
+    });
+    logo.style.opacity = opacity;
+  }
+};
+// mouseenter event doesn't bubble
+navContainer.addEventListener('mouseover', function (ev) {
+  handleOver(ev, 0.5);
+});
+
+// we undo what we do with mouseover
+navContainer.addEventListener('mouseout', function (ev) {
+  handleOver(ev, 1);
+});
+
 //////////////////////////////////////////////////////////
 //  Creating element
 // const message = document.createElement('div');
