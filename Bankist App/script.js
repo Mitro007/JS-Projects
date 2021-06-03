@@ -102,13 +102,13 @@ tabsContainer.addEventListener('click', function (ev) {
     const tabContent = document.querySelector(
       `.${classNameforDescription}${tabId}`
     );
-    tabs.forEach((el) => {
-      el.classList.remove(classNameForActiveTabEffect);
-    });
 
-    tabsContent.forEach((el) => {
-      el.classList.remove(classNameForActiveContentEffect);
-    });
+    tabs.forEach((el) => el.classList.remove(classNameForActiveTabEffect));
+
+    tabsContent.forEach((el) =>
+      el.classList.remove(classNameForActiveContentEffect)
+    );
+
     tabEl.classList.add(classNameForActiveTabEffect);
     tabContent.classList.add(classNameForActiveContentEffect);
   }
