@@ -91,15 +91,17 @@ document.querySelector('.nav__links').addEventListener('click', function (ev) {
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContent = document.querySelectorAll('.operations__content');
 const tabsContainer = document.querySelector('.operations__tab-container');
+const classNameForActiveContentEffect = 'operations__content--active';
+const classNameForActiveTabEffect = 'operations__tab--active';
+const classNameforDescription = 'operations__content--';
 
 tabsContainer.addEventListener('click', function (ev) {
   const tabEl = ev.target.closest('.operations__tab');
   if (tabEl) {
     const tabId = tabEl.dataset.tab;
-    const classNameforDescription = 'operations__content--' + tabId;
-    const classNameForActiveContentEffect = 'operations__content--active';
-    const classNameForActiveTabEffect = 'operations__tab--active';
-    const tabContent = document.querySelector(`.${classNameforDescription}`);
+    const tabContent = document.querySelector(
+      `.${classNameforDescription}${tabId}`
+    );
     tabEl.classList.add(classNameForActiveTabEffect);
     tabContent.classList.add(classNameForActiveContentEffect);
     tabs.forEach((el) => {
